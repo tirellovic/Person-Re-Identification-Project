@@ -1,11 +1,29 @@
 from pathlib import Path
 from typing import Tuple, List, Optional
 import copy
+import random
 import scipy.io
 import numpy as np
 import torch
 import torch.nn as nn
 from PIL import Image, ImageDraw, ImageFont
+
+def fix_random(
+        seed: int
+    ) -> None:
+    """Fix all the possible sources of randomness.
+
+    Args:
+        seed: the seed to use.
+    """
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+
 
 def parse_annotations_file(
         path_to_file: Path

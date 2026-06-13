@@ -4,13 +4,9 @@
 # - Adjusted top-k accuracy calculation to only consider top-1 accuracy
 # - Clarified function docstring and added recall rate scaling explanation
 
-import os.path as osp
 
 import numpy as np
-from scipy.io import loadmat
 from sklearn.metrics import average_precision_score
-
-# from utils.utils import write_json
 
 def _compute_iou(a, b):
     x1 = max(a[0], b[0])
